@@ -14,7 +14,10 @@ namespace KickstarterAnalyzer
 
             // Find pages
 
+            scraper.Links.Add(new Uri("http://www.kickstarter.com/projects/obsidian/project-eternity"));
+
             // Download Pages
+            scraper.Download();
 
             // Scrape Pages
 
