@@ -34,10 +34,114 @@
                 HtmlDocument doc = new HtmlDocument();
                 doc.Load(htmlStream);
 
+                project.Name = this.GetName(doc);
+
+                project.Company = this.GetCompany(doc);
+
+                project.Description = this.GetProjectDescription(doc);
+
+                project.TotalFunding = this.GetFunding(doc);
+
+                project.FundingGoal = this.GetFundingGoal(doc);
+
+                project.Backers = this.GetTotalProjectBackers(doc);
+
+                project.Currency = this.GetCurrency(doc);
+
+                project.Link = this.GetLink(doc);
+
+                project.FundingSucceeded = this.GetFundingSucceeded(doc);
+
                 project.Levels.AddRange(GetLevels(doc));
 
                 this.Projects.Add(project);
             }
+        }
+
+        private bool GetFundingSucceeded(HtmlDocument doc)
+        { 
+            var bannergNode = doc.DocumentNode
+                               .Descendants("div")
+                               .Where(d => d.Attributes.Contains("id") && d.Attributes["id"].Value.Contains("funding-successful-banner"));
+
+            return bannergNode.Any();
+        }
+
+        private Uri GetLink(HtmlDocument doc)
+        {
+            var descriptionNode = doc.DocumentNode
+                               .Descendants("meta")
+                               .Where(d => d.Attributes.Contains("property") && d.Attributes["property"].Value.Contains("og:url"));
+
+
+            return new Uri(descriptionNode.First().Attributes["content"].Value);
+        }
+
+        private int GetFundingGoal(HtmlDocument doc)
+        {
+            var fundingNode = doc.DocumentNode
+                              .Descendants("div")
+                              .Where(d => d.Attributes.Contains("id") && d.Attributes["id"].Value.Contains("pledged"));
+
+            return (int)decimal.Parse(fundingNode.First().Attributes["data-goal"].Value);
+        }
+
+        private string GetCurrency(HtmlDocument doc)
+        {
+            var fundingNode = doc.DocumentNode
+                              .Descendants("span")
+                              .Where(d => d.Attributes.Contains("data-currency"));
+
+            return fundingNode.First().Attributes["data-currency"].Value;
+        }
+
+        private decimal GetFunding(HtmlDocument doc)
+        {
+            var fundingNode = doc.DocumentNode
+                              .Descendants("div")
+                              .Where(d => d.Attributes.Contains("id") && d.Attributes["id"].Value.Contains("pledged"));
+
+            return decimal.Parse(fundingNode.First().Attributes["data-pledged"].Value);
+        }
+
+        private int GetTotalProjectBackers(HtmlDocument doc)
+        {
+            var backerNode = doc.DocumentNode
+                              .Descendants("div")
+                              .Where(d => d.Attributes.Contains("id") && d.Attributes["id"].Value.Contains("backers_count"));
+
+
+            return int.Parse(backerNode.First().Attributes["data-backers-count"].Value);
+        }
+
+        private string GetCompany(HtmlDocument doc)
+        {
+            var companyNode = doc.DocumentNode
+                               .Descendants("a")
+                               .Where(d => d.Attributes.Contains("data-modal-id") && d.Attributes["data-modal-id"].Value.Contains("modal_project_by"));
+
+
+            return companyNode.First().InnerText;
+        }
+
+        private string GetProjectDescription(HtmlDocument doc)
+        {
+            var descriptionNode = doc.DocumentNode
+                               .Descendants("meta")
+                               .Where(d => d.Attributes.Contains("property") && d.Attributes["property"].Value.Contains("og:description"));
+
+
+            return descriptionNode.First().Attributes["content"].Value;
+        }
+
+        private string GetName(HtmlDocument doc)
+        {
+            var titleNode = doc.DocumentNode
+                               .Descendants("meta")
+                               .Where(d => d.Attributes.Contains("property") && d.Attributes["property"].Value.Contains("og:title"));
+
+
+            return titleNode.First().Attributes["content"].Value;
         }
 
         private static IEnumerable<BackingLevel> GetLevels(HtmlDocument doc)
@@ -135,6 +239,16 @@
             public List<BackingLevel> Levels { get; set; }
 
             public string Currency { get; set; }
+
+            public string Company { get; set; }
+
+            public int FundingGoal { get; set; }
+
+            public int Backers { get; set; }
+
+            public decimal TotalFunding { get; set; }
+
+            public string Description { get; set; }
         }
 
         [DebuggerDisplay("{Money} - {Backers}")]

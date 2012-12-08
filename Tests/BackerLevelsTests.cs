@@ -6,7 +6,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class ScraperTests
+    public class BackerLevelsTests
     {
         private Scraper.Scraper scraper;
 
