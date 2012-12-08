@@ -1,16 +1,11 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace Tests
+﻿namespace Tests
 {
+    using System;
     using System.IO;
     using System.Linq;
 
-    /// <summary>
-    /// Summary description for ProjectTests
-    /// </summary>
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     public class ProjectTests
     {
@@ -28,7 +23,7 @@ namespace Tests
         [TestMethod]
         public void TestProject()
         {
-            var project = scraper.Projects.First();
+            var project = this.scraper.Projects.First();
             Assert.AreEqual(project.Backers, 73986);
             Assert.AreEqual(project.TotalFunding, 3986929.49m);
             Assert.AreEqual(project.FundingGoal, 1100000);
@@ -38,6 +33,9 @@ namespace Tests
             Assert.AreEqual(project.Company, "Sample Company");
             Assert.AreEqual(project.Currency, "USD");
             Assert.AreEqual(project.Link, "http://www.example.com/link");
+            Assert.AreEqual(project.StartDate, DateTime.Parse("Sep 14, 2012"));
+            Assert.AreEqual(project.EndDate, DateTime.Parse("Oct 16, 2012"));
+            Assert.AreEqual(project.Category, "Video Games");
         }
     }
 }

@@ -1,405 +1,426 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="projects_show no-js fontface " lang="en" xml:lang="en" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Sample Project by Sample Company &mdash; Kickstarter</title>
+<head>
+    <title>Sample Project by Sample Company &mdash; Kickstarter</title>
 
 
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta content="telephone=no" name="format-detection">
-        <meta name="video_height" content="360"/>
-        <meta name="video_width" content="640"/>
-        <meta name="video_type" content="application/x-shockwave-flash"/>
-        <meta name="title" content="Kickstarter &gt;&gt; Sample Project by Sample Company"/>
-        <meta name="description" content="Sample Company is raising funds for Sample Project on Kickstarter! 
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="video_height" content="360" />
+    <meta name="video_width" content="640" />
+    <meta name="video_type" content="application/x-shockwave-flash" />
+    <meta name="title" content="Kickstarter &gt;&gt; Sample Project by Sample Company" />
+    <meta name="description" content="Sample Company is raising funds for Sample Project on Kickstarter! 
 
- Sample Project is an thing developed by Sample Company."/>
-        <meta property="og:title" content="Sample Project"/>
-        <meta property="og:type" content="kickstarter:project"/>
-        <meta property="og:image" content="https://example.com/image.jpg"/>
-        <meta property="og:url" content="http://www.example.com/link"/>
-        <meta property="og:site_name" content="Kickstarter"/>
-        <meta property="fb:app_id" content="69103156693"/>
-        <meta property="og:description" content="Sample Project is aproject developed by Sample Company."/>
-        <meta property="kickstarter:location:latitude" content="33.6839"/>
-        <meta property="kickstarter:location:longitude" content="-117.795"/>
-        <meta property="twitter:site:id" content="16186995"/>
-        <meta property="og:video" content="http://www.kickstarter.com/swf/kickplayer.swf?allowfullscreen=true&amp;autostart=true&amp;backcolor=000000&amp;controlbar=over&amp;file=https%3A%2F%2Fs3.amazonaws.com%2Fksr%2Fprojects%2F289461%2Fvideo-170526-h264_high.mp4&amp;image=https%3A%2F%2Fs3.amazonaws.com%2Fksr%2Fprojects%2F289461%2Fphoto-full.jpg&amp;screencolor=000000&amp;skin=http%3A%2F%2Fwww.kickstarter.com%2Fswf%2Fkickskin.swf&amp;wmode=opaque"/>
-        <meta property="og:video:height" content="360"/>
-        <meta property="og:video:width" content="640"/>
-        <meta property="og:video:type" content="application/x-shockwave-flash"/>
-        <meta property="twitter:card" content="player"/>
-        <meta property="twitter:player" content="https://www.kickstarter.com/projects/obsidian/project-eternity/widget/video.html"/>
-        <meta property="twitter:player:height" content="360"/>
-        <meta property="twitter:player:width" content="640"/>
-        <meta property="twitter:player:stream" content="https://s3.amazonaws.com/ksr/projects/289461/video-170526-h264_base.mp4"/>
-        <meta property="twitter:player:stream:content_type" content="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;"/>
-        <meta content="authenticity_token" name="csrf-param" />
-        <meta content="zG1wNIrKh/1nhnbtkOP5FMzYOOlV9ThZzaXjpoeaDow=" name="csrf-token" />
+ Sample Project is an thing developed by Sample Company." />
+    <meta property="og:title" content="Sample Project" />
+    <meta property="og:type" content="kickstarter:project" />
+    <meta property="og:image" content="https://example.com/image.jpg" />
+    <meta property="og:url" content="http://www.example.com/link" />
+    <meta property="og:site_name" content="Kickstarter" />
+    <meta property="fb:app_id" content="69103156693" />
+    <meta property="og:description" content="Sample Project is aproject developed by Sample Company." />
+    <meta property="kickstarter:location:latitude" content="33.6839" />
+    <meta property="kickstarter:location:longitude" content="-117.795" />
+    <meta property="twitter:site:id" content="16186995" />
+    <meta property="og:video" content="http://www.kickstarter.com/swf/kickplayer.swf?allowfullscreen=true&amp;autostart=true&amp;backcolor=000000&amp;controlbar=over&amp;file=https%3A%2F%2Fs3.amazonaws.com%2Fksr%2Fprojects%2F289461%2Fvideo-170526-h264_high.mp4&amp;image=https%3A%2F%2Fs3.amazonaws.com%2Fksr%2Fprojects%2F289461%2Fphoto-full.jpg&amp;screencolor=000000&amp;skin=http%3A%2F%2Fwww.kickstarter.com%2Fswf%2Fkickskin.swf&amp;wmode=opaque" />
+    <meta property="og:video:height" content="360" />
+    <meta property="og:video:width" content="640" />
+    <meta property="og:video:type" content="application/x-shockwave-flash" />
+    <meta property="twitter:card" content="player" />
+    <meta property="twitter:player" content="https://www.kickstarter.com/projects/obsidian/project-eternity/widget/video.html" />
+    <meta property="twitter:player:height" content="360" />
+    <meta property="twitter:player:width" content="640" />
+    <meta property="twitter:player:stream" content="https://s3.amazonaws.com/ksr/projects/289461/video-170526-h264_base.mp4" />
+    <meta property="twitter:player:stream:content_type" content="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;" />
+    <meta content="authenticity_token" name="csrf-param" />
+    <meta content="zG1wNIrKh/1nhnbtkOP5FMzYOOlV9ThZzaXjpoeaDow=" name="csrf-token" />
 
-    </head>
+</head>
 
 <body class="project projects leanback" id="projects_show">
-<div class="jGrowl center" id="growl_section"></div>
-<div id="header-wrap">
-<div class="container logged-in" id="header">
-<h1 id="logo">
-<a href="/"><span>Kickstarter</span>
-</a></h1>
-<a href="/help/faq/kickstarter%20basics?ref=nav" id="what_is_kickstarter_link">What is Kickstarter?</a>
-<ul id="menu-main">
-<li id="menu-main-discover">
-<a href="/discover"><strong>Discover</strong>
-<span>great projects</span>
-</a></li>
-<li id="menu-main-fund">
-<a href="/start"><strong>Start</strong>
-<span>your project</span>
-</a></li>
-</ul>
-<form accept-charset="UTF-8" action="/projects/search" class="search overlabels" method="get"><div style="margin:0;padding:0;display:inline"><input class="hidden" name="utf8" type="hidden" value="&#x2713;" /></div>
-<div class="field search">
-<span class="icon-search"></span>
-<span class="icon-search-clear"></span>
-<label class="overlabel overlabel-search">Search projects</label>
-<input class="input-search header text" data-tracker-name="Header Live Search" id="term" name="term" type="text" />
-<span class="icon-search-nipple"></span>
-</div>
-</form>
+    <div class="jGrowl center" id="growl_section"></div>
+    <div id="header-wrap">
+        <div class="container logged-in" id="header">
+            <h1 id="logo">
+                <a href="/"><span>Kickstarter</span>
+                </a></h1>
+            <a href="/help/faq/kickstarter%20basics?ref=nav" id="what_is_kickstarter_link">What is Kickstarter?</a>
+            <ul id="menu-main">
+                <li id="menu-main-discover">
+                    <a href="/discover"><strong>Discover</strong>
+                        <span>great projects</span>
+                    </a></li>
+                <li id="menu-main-fund">
+                    <a href="/start"><strong>Start</strong>
+                        <span>your project</span>
+                    </a></li>
+            </ul>
+            <form accept-charset="UTF-8" action="/projects/search" class="search overlabels" method="get">
+                <div style="margin: 0; padding: 0; display: inline">
+                    <input class="hidden" name="utf8" type="hidden" value="&#x2713;" /></div>
+                <div class="field search">
+                    <span class="icon-search"></span>
+                    <span class="icon-search-clear"></span>
+                    <label class="overlabel overlabel-search">Search projects</label>
+                    <input class="input-search header text" data-tracker-name="Header Live Search" id="term" name="term" type="text" />
+                    <span class="icon-search-nipple"></span>
+                </div>
+            </form>
 
-</div>
-</div>
-<div id="search_results-wrap">
-<div id="search_results-shadow">
-<div id="search_results-inner_wrap">
-<div class="container" id="search_results">
-<a class="close"><span class="icon-x"></span></a>
-<h2 class="header"></h2>
-<div id="search_results_panel"></div>
-<p class="footer"></p>
-<a class="prev arrow">
-<span class="icon-search-left"></span>
-<strong>Previous</strong>
-</a>
-<a class="next arrow">
-<span class="icon-search-right"></span>
-<strong>Next</strong>
-</a>
-</div>
-</div>
-</div>
-</div>
+        </div>
+    </div>
+    <div id="search_results-wrap">
+        <div id="search_results-shadow">
+            <div id="search_results-inner_wrap">
+                <div class="container" id="search_results">
+                    <a class="close"><span class="icon-x"></span></a>
+                    <h2 class="header"></h2>
+                    <div id="search_results_panel"></div>
+                    <p class="footer"></p>
+                    <a class="prev arrow">
+                        <span class="icon-search-left"></span>
+                        <strong>Previous</strong>
+                    </a>
+                    <a class="next arrow">
+                        <span class="icon-search-right"></span>
+                        <strong>Next</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
-<div class="Project458565935_cxt Project-state-successful Project-is_starred-false Project-ended-true" id="main_content">
+    <div class="Project458565935_cxt Project-state-successful Project-is_starred-false Project-ended-true" id="main_content">
 
-<div id="running-board-wrap">
-<div class="container" id="running-board">
-<div id="project-header">
-<div class="NS-project_-running_board">
-<h1 id="title">
-<a href="/projects/obsidian/project-eternity">Sample Project</a>
-</h1>
-<h2 id="subtitle">
-<span class="creator">
-by
-<a href="/projects/obsidian/project-eternity/creator_bio" class="remote_modal_dialog" data-modal-id="modal_project_by" data-modal-title="Biography" id="name">Sample Company</a>
-</span>
-<span class="divider">&middot;</span>
-<span class="backing">
-<b>
-You're a backer
-</b>
-<span class="backer-badge"></span>
-</span>
-</h2>
+        <div id="running-board-wrap">
+            <div class="container" id="running-board">
+                <div id="project-header">
+                    <div class="NS-project_-running_board">
+                        <h1 id="title">
+                            <a href="/projects/obsidian/project-eternity">Sample Project</a>
+                        </h1>
+                        <h2 id="subtitle">
+                            <span class="creator">by
+            <a href="/projects/obsidian/project-eternity/creator_bio" class="remote_modal_dialog" data-modal-id="modal_project_by" data-modal-title="Biography" id="name">Sample Company</a>
+                            </span>
+                            <span class="divider">&middot;</span>
 
-<ul id="running-board-nav">
-<li>
-<a href="/projects/obsidian/project-eternity" class="current" id="home_nav">Home</a>
-</li>
-<li>
-<span data-updates-count="34" id="updates_count">
-<a href="/projects/obsidian/project-eternity/posts" id="updates_nav">Updates <span class='count'>34</span></a>
-</span>
-</li>
-<li>
-<a href="/projects/obsidian/project-eternity/backers" id="backers_nav">Backers <span class='count'><span class="Project458565935" data-format="number" data-value="73986" itemprop="Project[backers_count]">73,986</span></span></a>
-</li>
-<li>
-<span data-comments-count="61854" id="comments_count">
-<a href="/projects/obsidian/project-eternity/comments" id="comments_nav">Comments <span class='count'>61,854</span></a>
-</span>
-</li>
-</ul>
-<ul id="project-metadata">
-<li class="location">
-<a href="/discover/cities/irvine-ca"><span class='location-icon'></span> Irvine, CA</a>
-</li>
-<li class="category" data-project-parent-category="Games">
-<a href="/discover/categories/video%20games"><span class='category-icon'></span> Video Games</a>
-</li>
-</ul>
-</div>
+                        </h2>
+                        <ul class="meta">
+                            <li class="posted">
+                                <b>Launched:</b>
+                                Sep 14, 2012
+                            </li>
+                            <li class="ends">
+                                <b>Funding ended:</b>
+                                Oct 16, 2012
+                            </li>
 
-</div>
-</div>
-</div>
-<div id="content-wrap">
-<div class="state-successful" style="display:none;"><div class="container" id="funding-successful-banner">
-<p>
-<b>Funded!</b>
-This project successfully raised its funding goal <span class="Project458565935" data-format="distance_date" data-value="&quot;2012-10-16T21:00:00-04:00&quot;" itemprop="Project[deadline]">on October 16</span>.
-</p>
-</div>
-</div><div class="container" id="content">
-<div class="NS-projects-content">
 
-<div class="NS-projects-rightcol" id="rightcol">
-<div class="NS-projects-ecom" id="moneyraised">
-<div id="stats">
-<h5>
-<div class="num" data-backers-count="73986" id="backers_count"><span class="Project458565935" data-format="number" data-value="73986" itemprop="Project[backers_count]">73,986</span></div>
-<span><span class="Project458565935" data-attr="backers_count" data-format="pluralize" data-value="73986" data-word="Backer">Backers</span></span>
-</h5>
-<h5>
-<div class="num" data-goal="1100000.0" data-percent-raised="3.624481354545454545454545455" data-pledged="3986929.49" id="pledged"><span class="Project458565935" data-currency="USD" data-format="shorter_money" data-precision="0" data-value="3986929" itemprop="Project[pledged]">$3,986,929</span></div>
-pledged of $1,100,000 goal
-</h5>
-<span data-duration="32.33259259259259" data-end_time="Wed, 17 Oct 2012 01:00:00 -0000" data-hours-remaining="0" id="project_duration_data"></span>
-<div class="state-not-canceled state-not-suspended" style="display:block;"><h5>
-<div class="num">0</div>
-<span class="text">seconds to go</span>
-</h5>
-</div></div>
-<div class="state-live" style="display:none;"><div class="ended-not-true" style="display:none;"><div id="pledge-wrap">
-<a href="/projects/obsidian/project-eternity/pledge/edit?ref=manage_pledge" class="button-neutral" id="button-manage-pledge">Manage Your Pledge</a>
-</div>
-</div></div><div class="state-not-live state-not-successful" style="display:block;"><div id="notice">
-<div class="state-started state-submitted" style="display:none;"><p>
-<b>THIS PROJECT IS NOT LIVE</b>
-This is only a draft that the creator has chosen to share.
-</p>
-</div><div class="state-suspended" style="display:none;"><p>
-<b>Funding Suspended</b>
-Funding for this project was suspended <span class="Project458565935" data-format="distance_date" data-value="&quot;2012-10-16T21:00:29-04:00&quot;" itemprop="Project[state_changed_at]">on October 16</span>.
-</p>
-</div><div class="state-canceled" style="display:none;"><p>
-<b>Funding Canceled</b>
-Funding for this project was canceled by the project creator <span class="Project458565935" data-format="distance_date" data-value="&quot;2012-10-16T21:00:29-04:00&quot;" itemprop="Project[state_changed_at]">on October 16</span>.
-</p>
-</div><div class="state-failed" style="display:none;"><p>
-<b>Funding Unsuccessful</b>
-This project reached the deadline without achieving its funding goal on October 16.
-</p>
-</div><div class="state-purged" style="display:none;"><p>
-<b>This project is purged and only visible to staff.</b>
-</p>
-</div></div>
-</div>
-<div class="state-live" style="display:none;"><div id="banner">
-<p>
-This project will be funded on Tuesday Oct 16, 9:00pm EDT.
-</p>
-</div>
-</div></div>
+                            <ul id="running-board-nav">
+                                <li>
+                                    <a href="/projects/obsidian/project-eternity" class="current" id="home_nav">Home</a>
+                                </li>
+                                <li>
+                                    <span data-updates-count="34" id="updates_count">
+                                        <a href="/projects/obsidian/project-eternity/posts" id="updates_nav">Updates <span class='count'>34</span></a>
+                                    </span>
+                                </li>
+                                <li>
+                                    <a href="/projects/obsidian/project-eternity/backers" id="backers_nav">Backers <span class='count'><span class="Project458565935" data-format="number" data-value="73986" itemprop="Project[backers_count]">73,986</span></span></a>
+                                </li>
+                                <li>
+                                    <span data-comments-count="61854" id="comments_count">
+                                        <a href="/projects/obsidian/project-eternity/comments" id="comments_nav">Comments <span class='count'>61,854</span></a>
+                                    </span>
+                                </li>
+                            </ul>
+                            <ul id="project-metadata">
+                                <li class="location">
+                                    <a href="/discover/cities/irvine-ca"><span class='location-icon'></span>Irvine, CA</a>
+                                </li>
+                                <li class="category" data-project-parent-category="Games">
+                                    <a href="/discover/categories/video%20games"><span class='category-icon'></span>Video Games</a>
+                                </li>
+                            </ul>
+                    </div>
 
-<div class="NS-projects-rightcol-projectby" id="project-by">
-<div id="avatar">
-<a href="/projects/obsidian/project-eternity/creator_bio" class="remote_modal_dialog" data-modal-id="modal_project_by" data-modal-title="Biography"><img alt="Obsidian-logo-ks.medium" class="avatar-medium" height="160" src="https://s3.amazonaws.com/ksr/avatars/3693689/obsidian-logo-ks.medium.jpg?1346793997" width="160" /></a>
-</div>
-<div id="creator-name">
-<b>Project by</b>
-<h3><a href="/projects/obsidian/project-eternity/creator_bio" class="remote_modal_dialog" data-modal-id="modal_project_by" data-modal-title="Biography">Sample Company</a></h3>
-<p>
-<span class="location"><a href="/discover/cities/irvine-ca">Irvine, CA</a></span>
-<span class="message"><a href="/projects/obsidian/project-eternity/messages/new?message%5Bto%5D=obsidian" class="remote_modal_dialog" data-modal-title="Send A Message to Sample Company">Contact me</a></span>
-</p>
-</div>
-<div id="creator-details">
-<ul>
-<li class="projects">
-<span class="icon"></span>
-<span class="text">
-First created
-<span class="divider">&middot;</span>
-<a href="/profile/obsidian/backed" class="more-button remote_modal_dialog" data-modal-title="Projects backed by Sample Company">21 backed</a>
-</span>
-</li>
-<li class="facebook">
-<span class="icon"></span>
-<span class="text">
-Has not connected Facebook
-</span>
-</li>
-<li class="links">
-<b>Website:</b>
-<a href="http://eternity.obsidian.net" class="popup" rel="nofollow" target="_blank">http://eternity.obsidi...</a>
-</li>
-</ul>
-<p class="more">
-<a href="/projects/obsidian/project-eternity/creator_bio" class="remote_modal_dialog" data-modal-id="modal_project_by" data-modal-title="Biography">See full bio</a>
-</p>
-</div>
-</div>
+                </div>
+            </div>
+        </div>
+        <div id="content-wrap">
+            <div class="state-successful" style="display: none;">
+                <div class="container" id="funding-successful-banner">
+                    <p>
+                        <b>Funded!</b>
+                        This project successfully raised its funding goal <span class="Project458565935" data-format="distance_date" data-value="&quot;2012-10-16T21:00:00-04:00&quot;" itemprop="Project[deadline]">on October 16</span>.
+                    </p>
+                </div>
+            </div>
+            <div class="container" id="content">
+                <div class="NS-projects-content">
 
-<ul class="NS-projects-rightcol-rewards backing" data-reward-count="21" id="what-you-get">
-<li><div class="NS-projects-reward">
-<h3>Pledge $5 or more</h3>
-<div class="backers-limits">
-<span class="icon-backer-tag"></span>
-<span class="backers-wrap">
-<span class="num-backers">
-317 backers
-</span>
-</span>
-</div>
-<div class="desc">
-<p>5 unlimited description</p>
-</div>
-<div class="delivery-date">
-Estimated delivery:
+                    <div class="NS-projects-rightcol" id="rightcol">
+                        <div class="NS-projects-ecom" id="moneyraised">
+                            <div id="stats">
+                                <h5>
+                                    <div class="num" data-backers-count="73986" id="backers_count"><span class="Project458565935" data-format="number" data-value="73986" itemprop="Project[backers_count]">73,986</span></div>
+                                    <span><span class="Project458565935" data-attr="backers_count" data-format="pluralize" data-value="73986" data-word="Backer">Backers</span></span>
+                                </h5>
+                                <h5>
+                                    <div class="num" data-goal="1100000.0" data-percent-raised="3.624481354545454545454545455" data-pledged="3986929.49" id="pledged"><span class="Project458565935" data-currency="USD" data-format="shorter_money" data-precision="0" data-value="3986929" itemprop="Project[pledged]">$3,986,929</span></div>
+                                    pledged of $1,100,000 goal
+                                </h5>
+                                <span data-duration="32.33259259259259" data-end_time="Wed, 17 Oct 2012 01:00:00 -0000" data-hours-remaining="0" id="project_duration_data"></span>
+                                <div class="state-not-canceled state-not-suspended" style="display: block;">
+                                    <h5>
+                                        <div class="num">0</div>
+                                        <span class="text">seconds to go</span>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="state-live" style="display: none;">
+                                <div class="ended-not-true" style="display: none;">
+                                    <div id="pledge-wrap">
+                                        <a href="/projects/obsidian/project-eternity/pledge/edit?ref=manage_pledge" class="button-neutral" id="button-manage-pledge">Manage Your Pledge</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="state-not-live state-not-successful" style="display: block;">
+                                <div id="notice">
+                                    <div class="state-started state-submitted" style="display: none;">
+                                        <p>
+                                            <b>THIS PROJECT IS NOT LIVE</b>
+                                            This is only a draft that the creator has chosen to share.
+                                        </p>
+                                    </div>
+                                    <div class="state-suspended" style="display: none;">
+                                        <p>
+                                            <b>Funding Suspended</b>
+                                            Funding for this project was suspended <span class="Project458565935" data-format="distance_date" data-value="&quot;2012-10-16T21:00:29-04:00&quot;" itemprop="Project[state_changed_at]">on October 16</span>.
+                                        </p>
+                                    </div>
+                                    <div class="state-canceled" style="display: none;">
+                                        <p>
+                                            <b>Funding Canceled</b>
+                                            Funding for this project was canceled by the project creator <span class="Project458565935" data-format="distance_date" data-value="&quot;2012-10-16T21:00:29-04:00&quot;" itemprop="Project[state_changed_at]">on October 16</span>.
+                                        </p>
+                                    </div>
+                                    <div class="state-failed" style="display: none;">
+                                        <p>
+                                            <b>Funding Unsuccessful</b>
+                                            This project reached the deadline without achieving its funding goal on October 16.
+                                        </p>
+                                    </div>
+                                    <div class="state-purged" style="display: none;">
+                                        <p>
+                                            <b>This project is purged and only visible to staff.</b>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="state-live" style="display: none;">
+                                <div id="banner">
+                                    <p>
+                                        This project will be funded on Tuesday Oct 16, 9:00pm EDT.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="NS-projects-rightcol-projectby" id="project-by">
+                            <div id="avatar">
+                                <a href="/projects/obsidian/project-eternity/creator_bio" class="remote_modal_dialog" data-modal-id="modal_project_by" data-modal-title="Biography">
+                                    <img alt="Obsidian-logo-ks.medium" class="avatar-medium" height="160" src="https://s3.amazonaws.com/ksr/avatars/3693689/obsidian-logo-ks.medium.jpg?1346793997" width="160" /></a>
+                            </div>
+                            <div id="creator-name">
+                                <b>Project by</b>
+                                <h3><a href="/projects/obsidian/project-eternity/creator_bio" class="remote_modal_dialog" data-modal-id="modal_project_by" data-modal-title="Biography">Sample Company</a></h3>
+                                <p>
+                                    <span class="location"><a href="/discover/cities/irvine-ca">Irvine, CA</a></span>
+                                    <span class="message"><a href="/projects/obsidian/project-eternity/messages/new?message%5Bto%5D=obsidian" class="remote_modal_dialog" data-modal-title="Send A Message to Sample Company">Contact me</a></span>
+                                </p>
+                            </div>
+                            <div id="creator-details">
+                                <ul>
+                                    <li class="projects">
+                                        <span class="icon"></span>
+                                        <span class="text">First created
+                                            <span class="divider">&middot;</span>
+                                            <a href="/profile/obsidian/backed" class="more-button remote_modal_dialog" data-modal-title="Projects backed by Sample Company">21 backed</a>
+                                        </span>
+                                    </li>
+                                    <li class="facebook">
+                                        <span class="icon"></span>
+                                        <span class="text">Has not connected Facebook
+                                        </span>
+                                    </li>
+                                    <li class="links">
+                                        <b>Website:</b>
+                                        <a href="http://eternity.obsidian.net" class="popup" rel="nofollow" target="_blank">http://eternity.obsidi...</a>
+                                    </li>
+                                </ul>
+                                <p class="more">
+                                    <a href="/projects/obsidian/project-eternity/creator_bio" class="remote_modal_dialog" data-modal-id="modal_project_by" data-modal-title="Biography">See full bio</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <ul class="NS-projects-rightcol-rewards backing" data-reward-count="21" id="what-you-get">
+                            <li>
+                                <div class="NS-projects-reward">
+                                    <h3>Pledge $5 or more</h3>
+                                    <div class="backers-limits">
+                                        <span class="icon-backer-tag"></span>
+                                        <span class="backers-wrap">
+                                            <span class="num-backers">317 backers
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="desc">
+                                        <p>5 unlimited description</p>
+                                    </div>
+                                    <div class="delivery-date">
+                                        Estimated delivery:
 Oct 2012
-</div>
+                                    </div>
 
 
-</div>
-</li>
-<li><div class="NS-projects-reward">
-<h3>Pledge $35 or more</h3>
-<div class="backers-limits">
-<span class="icon-backer-tag"></span>
-<span class="backers-wrap">
-<span class="num-backers">
-8394 backers
-</span>
-</span>
-</div>
-<div class="desc">
-<p>35 Unlimted description</p>
-</div>
-<div class="delivery-date">
-Estimated delivery:
+                                </div>
+                            </li>
+                            <li>
+                                <div class="NS-projects-reward">
+                                    <h3>Pledge $35 or more</h3>
+                                    <div class="backers-limits">
+                                        <span class="icon-backer-tag"></span>
+                                        <span class="backers-wrap">
+                                            <span class="num-backers">8394 backers
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="desc">
+                                        <p>35 Unlimted description</p>
+                                    </div>
+                                    <div class="delivery-date">
+                                        Estimated delivery:
 Apr 2014
-</div>
+                                    </div>
 
 
-</div>
-</li>
-<li><div class="NS-projects-reward">
-<h3>Pledge $1,000 or more</h3>
-<div class="backers-limits">
-<span class="icon-backer-tag"></span>
-<span class="backers-wrap">
-<span class="num-backers">
-49 backers
-</span>
-<span class="limited">
-Limited
-<span class="limited-number">(1 of 50 left)</span>
-</span>
-</span>
-</div>
-<div class="desc">
-<p>1000 description 1 of 50</p>
-</div>
-<div class="delivery-date">
-Estimated delivery:
+                                </div>
+                            </li>
+                            <li>
+                                <div class="NS-projects-reward">
+                                    <h3>Pledge $1,000 or more</h3>
+                                    <div class="backers-limits">
+                                        <span class="icon-backer-tag"></span>
+                                        <span class="backers-wrap">
+                                            <span class="num-backers">49 backers
+                                            </span>
+                                            <span class="limited">Limited
+                                                <span class="limited-number">(1 of 50 left)</span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="desc">
+                                        <p>1000 description 1 of 50</p>
+                                    </div>
+                                    <div class="delivery-date">
+                                        Estimated delivery:
 Apr 2014
-</div>
+                                    </div>
 
 
-</div>
-</li>
-<li><div class="NS-projects-reward">
-<h3>Pledge $3,000 or more</h3>
-<div class="backers-limits">
-<span class="icon-backer-tag"></span>
-<span class="backers-wrap">
-<span class="num-backers">
-7 backers
-</span>
-<span class="limited">
-Limited
-<span class="limited-number">(13 of 20 left)</span>
-</span>
-</span>
-</div>
-<div class="desc">
-<p>3000 Tier Description 13 of 20</p>
-</div>
-<div class="delivery-date">
-Estimated delivery:
+                                </div>
+                            </li>
+                            <li>
+                                <div class="NS-projects-reward">
+                                    <h3>Pledge $3,000 or more</h3>
+                                    <div class="backers-limits">
+                                        <span class="icon-backer-tag"></span>
+                                        <span class="backers-wrap">
+                                            <span class="num-backers">7 backers
+                                            </span>
+                                            <span class="limited">Limited
+                                                <span class="limited-number">(13 of 20 left)</span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="desc">
+                                        <p>3000 Tier Description 13 of 20</p>
+                                    </div>
+                                    <div class="delivery-date">
+                                        Estimated delivery:
 Apr 2014
-</div>
+                                    </div>
 
 
-</div>
-</li>
-<li><div class="NS-projects-reward">
-<h3>Pledge $5,000 or more</h3>
-<div class="backers-limits">
-<span class="icon-backer-tag"></span>
-<span class="backers-wrap">
-<span class="num-backers">
-3 backers
-</span>
-<span class="limited">
-Limited
-<span class="limited-number">(3 of 6 left)</span>
-</span>
-</span>
-</div>
-<div class="desc">
-<p>5000 Tier Description three of six</p>
-</div>
-<div class="delivery-date">
-Estimated delivery:
+                                </div>
+                            </li>
+                            <li>
+                                <div class="NS-projects-reward">
+                                    <h3>Pledge $5,000 or more</h3>
+                                    <div class="backers-limits">
+                                        <span class="icon-backer-tag"></span>
+                                        <span class="backers-wrap">
+                                            <span class="num-backers">3 backers
+                                            </span>
+                                            <span class="limited">Limited
+                                                <span class="limited-number">(3 of 6 left)</span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="desc">
+                                        <p>5000 Tier Description three of six</p>
+                                    </div>
+                                    <div class="delivery-date">
+                                        Estimated delivery:
 Apr 2014
-</div>
+                                    </div>
 
 
-</div>
-</li>
-<li><div class="NS-projects-reward">
-<h3>Pledge $6,000 or more</h3>
-<div class="backers-limits">
-<span class="icon-backer-tag"></span>
-<span class="backers-wrap">
-<span class="num-backers">
-5 backers
-</span>
-<span class="sold-out">
-Sold out
-</span>
-</span>
-</div>
-<div class="desc">
-<p>6000 Tier Description Sold Out</p>
-</div>
-<div class="delivery-date">
-Estimated delivery:
+                                </div>
+                            </li>
+                            <li>
+                                <div class="NS-projects-reward">
+                                    <h3>Pledge $6,000 or more</h3>
+                                    <div class="backers-limits">
+                                        <span class="icon-backer-tag"></span>
+                                        <span class="backers-wrap">
+                                            <span class="num-backers">5 backers
+                                            </span>
+                                            <span class="sold-out">Sold out
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="desc">
+                                        <p>6000 Tier Description Sold Out</p>
+                                    </div>
+                                    <div class="delivery-date">
+                                        Estimated delivery:
 Apr 2014
-</div>
+                                    </div>
 
 
-</div>
-</li>
+                                </div>
+                            </li>
 
-</ul>
+                        </ul>
 
-</div>
+                    </div>
 
-</div>
-
-
-</div>
-</div>
+                </div>
 
 
+            </div>
+        </div>
 
-</div>
+
+
+    </div>
 
 </body>
 </html>

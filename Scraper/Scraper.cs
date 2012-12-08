@@ -7,7 +7,6 @@
     using System.Linq;
     using System.Net;
     using System.Text.RegularExpressions;
-    using System.Xml.Linq;
 
     using HtmlAgilityPack;
 
@@ -34,125 +33,145 @@
                 HtmlDocument doc = new HtmlDocument();
                 doc.Load(htmlStream);
 
-                project.Name = this.GetName(doc);
+                project.Name = GetName(doc);
 
-                project.Company = this.GetCompany(doc);
+                project.Company = GetCompany(doc);
 
-                project.Description = this.GetProjectDescription(doc);
+                project.Description = GetProjectDescription(doc);
 
-                project.TotalFunding = this.GetFunding(doc);
+                project.TotalFunding = GetFunding(doc);
 
-                project.FundingGoal = this.GetFundingGoal(doc);
+                project.FundingGoal = GetFundingGoal(doc);
 
-                project.Backers = this.GetTotalProjectBackers(doc);
+                project.Backers = GetTotalProjectBackers(doc);
 
-                project.Currency = this.GetCurrency(doc);
+                project.Currency = GetCurrency(doc);
 
-                project.Link = this.GetLink(doc);
+                project.Link = GetLink(doc);
 
-                project.FundingSucceeded = this.GetFundingSucceeded(doc);
+                project.FundingSucceeded = GetFundingSucceeded(doc);
 
                 project.Levels.AddRange(GetLevels(doc));
+
+                project.StartDate = GetStartDate(doc);
+
+                project.EndDate = GetEndDate(doc);
+
+                project.Category = GetCatgory(doc);
 
                 this.Projects.Add(project);
             }
         }
 
-        private bool GetFundingSucceeded(HtmlDocument doc)
-        { 
-            var bannergNode = doc.DocumentNode
-                               .Descendants("div")
-                               .Where(d => d.Attributes.Contains("id") && d.Attributes["id"].Value.Contains("funding-successful-banner"));
+        private static string GetCatgory(HtmlDocument doc)
+        {
+            var categoryNode = GetNodesFor(doc, "li", "class", "category");
 
-            return bannergNode.Any();
+            return categoryNode.First().ChildNodes.ToList()[1].ChildNodes.ToList()[1].InnerHtml.Trim();
         }
 
-        private Uri GetLink(HtmlDocument doc)
+        private static IEnumerable<HtmlNode> GetNodesFor(HtmlDocument doc, string element, string attribute, string attributeValue)
+        {
+            return doc.DocumentNode
+                      .Descendants(element)
+                      .Where(d => d.Attributes.Contains(attribute) && d.Attributes[attribute].Value.Contains(attributeValue));
+        }
+
+        private static IEnumerable<HtmlNode> GetNodesFor(HtmlNode node, string element, string attribute, string attributeValue)
+        {
+            return node.Descendants(element)
+                       .Where(d => d.Attributes.Contains(attribute) && d.Attributes[attribute].Value.Contains(attributeValue));
+        }
+
+        private static DateTime GetStartDate(HtmlDocument doc)
+        {
+            var startNode = GetNodesFor(doc, "li", "class", "posted");
+
+            return DateTime.Parse(startNode.First().ChildNodes.ToList()[2].InnerHtml.Replace("\n", string.Empty));
+        }
+
+        private static DateTime GetEndDate(HtmlDocument doc)
+        {
+            var startNode = GetNodesFor(doc, "li", "class", "ends");
+
+            return DateTime.Parse(startNode.First().ChildNodes.ToList()[2].InnerHtml.Replace("\n", string.Empty));
+        }
+
+        private static bool GetFundingSucceeded(HtmlDocument doc)
+        {
+            var bannerNode = GetNodesFor(doc, "div", "id", "funding-successful-banner");
+
+            return bannerNode.Any();
+        }
+
+        private static Uri GetLink(HtmlDocument doc)
         {
             var descriptionNode = doc.DocumentNode
                                .Descendants("meta")
                                .Where(d => d.Attributes.Contains("property") && d.Attributes["property"].Value.Contains("og:url"));
 
-
             return new Uri(descriptionNode.First().Attributes["content"].Value);
         }
 
-        private int GetFundingGoal(HtmlDocument doc)
+        private static int GetFundingGoal(HtmlDocument doc)
         {
-            var fundingNode = doc.DocumentNode
-                              .Descendants("div")
-                              .Where(d => d.Attributes.Contains("id") && d.Attributes["id"].Value.Contains("pledged"));
+            var fundingNode = GetNodesFor(doc, "div", "id", "pledged");
 
             return (int)decimal.Parse(fundingNode.First().Attributes["data-goal"].Value);
         }
 
-        private string GetCurrency(HtmlDocument doc)
+        private static string GetCurrency(HtmlDocument doc)
         {
             var fundingNode = doc.DocumentNode
-                              .Descendants("span")
-                              .Where(d => d.Attributes.Contains("data-currency"));
+                                 .Descendants("span")
+                                 .Where(d => d.Attributes.Contains("data-currency"));
 
             return fundingNode.First().Attributes["data-currency"].Value;
         }
 
-        private decimal GetFunding(HtmlDocument doc)
+        private static decimal GetFunding(HtmlDocument doc)
         {
-            var fundingNode = doc.DocumentNode
-                              .Descendants("div")
-                              .Where(d => d.Attributes.Contains("id") && d.Attributes["id"].Value.Contains("pledged"));
+            var fundingNode = GetNodesFor(doc, "div", "id", "pledged");
 
             return decimal.Parse(fundingNode.First().Attributes["data-pledged"].Value);
         }
 
-        private int GetTotalProjectBackers(HtmlDocument doc)
+        private static int GetTotalProjectBackers(HtmlDocument doc)
         {
-            var backerNode = doc.DocumentNode
-                              .Descendants("div")
-                              .Where(d => d.Attributes.Contains("id") && d.Attributes["id"].Value.Contains("backers_count"));
-
+            var backerNode = GetNodesFor(doc, "div", "id", "backers_count"); 
 
             return int.Parse(backerNode.First().Attributes["data-backers-count"].Value);
         }
 
-        private string GetCompany(HtmlDocument doc)
+        private static string GetCompany(HtmlDocument doc)
         {
-            var companyNode = doc.DocumentNode
-                               .Descendants("a")
-                               .Where(d => d.Attributes.Contains("data-modal-id") && d.Attributes["data-modal-id"].Value.Contains("modal_project_by"));
-
+            var companyNode = GetNodesFor(doc, "a", "data-modal-id", "modal_project_by"); 
 
             return companyNode.First().InnerText;
         }
 
-        private string GetProjectDescription(HtmlDocument doc)
+        private static string GetProjectDescription(HtmlDocument doc)
         {
-            var descriptionNode = doc.DocumentNode
-                               .Descendants("meta")
-                               .Where(d => d.Attributes.Contains("property") && d.Attributes["property"].Value.Contains("og:description"));
-
+            var descriptionNode = GetNodesFor(doc, "meta", "property", "og:description"); 
 
             return descriptionNode.First().Attributes["content"].Value;
         }
 
-        private string GetName(HtmlDocument doc)
+        private static string GetName(HtmlDocument doc)
         {
-            var titleNode = doc.DocumentNode
-                               .Descendants("meta")
-                               .Where(d => d.Attributes.Contains("property") && d.Attributes["property"].Value.Contains("og:title"));
-
+            var titleNode = GetNodesFor(doc, "meta", "property", "og:title"); 
 
             return titleNode.First().Attributes["content"].Value;
         }
 
         private static IEnumerable<BackingLevel> GetLevels(HtmlDocument doc)
         {
-            var rewardNode = doc.DocumentNode.Descendants("div")
-                                             .Where(d => d.Attributes.Contains("class") && d.Attributes["class"].Value.Contains("NS-projects-reward"));
+            var rewardNode = GetNodesFor(doc, "div", "class", "NS-projects-reward"); 
 
             foreach (var htmlNode in rewardNode)
             {
                 var level = new BackingLevel();
-              
+
                 level.Money = GetMoney(htmlNode);
 
                 level.Backers = GetBackers(htmlNode);
@@ -161,10 +180,7 @@
 
                 level.IsSoldOut = GetIsSoldOut(htmlNode);
 
-                if (level.IsSoldOut)
-                {
-                    level.MaxBackersAllowed = level.Backers;
-                }
+                if (level.IsSoldOut) level.MaxBackersAllowed = level.Backers;
 
                 level.Description = GetDescription(htmlNode);
 
@@ -174,16 +190,14 @@
 
         private static string GetDescription(HtmlNode htmlNode)
         {
-            var limitBackersNode = htmlNode.Descendants("div")
-                                           .Where(d => d.Attributes.Contains("class") && d.Attributes["class"].Value.Contains("desc")).ToList();
+            var limitBackersNode = GetNodesFor(htmlNode, "div", "class", "desc"); 
 
             return limitBackersNode.First().Descendants().Skip(1).First().InnerText;
         }
 
         private static void SetBackersAllowedValues(HtmlNode htmlNode, BackingLevel level)
         {
-            var limitBackersNode = htmlNode.Descendants("span")
-                                           .Where(d => d.Attributes.Contains("class") && d.Attributes["class"].Value.Contains("limited-number")).ToList();
+            var limitBackersNode = GetNodesFor(htmlNode, "span", "class", "limited-number").ToList(); 
 
             if (limitBackersNode.Any())
             {
@@ -195,18 +209,14 @@
 
         private static bool GetIsSoldOut(HtmlNode htmlNode)
         {
-            var soldOutNode =
-                htmlNode.Descendants("span").Where(
-                    d => d.Attributes.Contains("class") && d.Attributes["class"].Value.Contains("sold-out"));
+            var soldOutNode = GetNodesFor(htmlNode, "span", "class", "sold-out");                
 
             return soldOutNode.Any();
         }
 
         private static int GetBackers(HtmlNode htmlNode)
         {
-            var numberOfBackersNode =
-                htmlNode.Descendants("span").Where(
-                    d => d.Attributes.Contains("class") && d.Attributes["class"].Value.Contains("num-backers"));
+            var numberOfBackersNode = GetNodesFor(htmlNode, "span", "class", "num-backers"); 
 
             return int.Parse(numberOfBackersNode.First().InnerText.Split(' ')[0]);
         }
@@ -249,6 +259,12 @@
             public decimal TotalFunding { get; set; }
 
             public string Description { get; set; }
+
+            public DateTime StartDate { get; set; }
+
+            public DateTime EndDate { get; set; }
+
+            public string Category { get; set; }
         }
 
         [DebuggerDisplay("{Money} - {Backers}")]
