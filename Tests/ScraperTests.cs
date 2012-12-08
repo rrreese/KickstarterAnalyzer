@@ -44,7 +44,7 @@
             Assert.AreEqual(level.RemainingBackersAllowed, 1);
             Assert.AreEqual(level.MaxBackersAllowed, 50);
             Assert.AreEqual(level.IsSoldOut, false);
-            Assert.AreEqual(level.Description, "5 unlimited description");
+            Assert.AreEqual(level.Description, "1000 description 1 of 50");
         }
 
         [TestMethod]
