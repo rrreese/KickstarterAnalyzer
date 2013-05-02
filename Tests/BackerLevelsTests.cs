@@ -15,16 +15,18 @@
         {
             this.scraper = new Scraper.Scraper();
 
-            this.scraper.Links.Add(new Uri(Directory.GetCurrentDirectory() + @"\..\..\Sample.html"));
+            this.scraper.Links.Add(new Uri(Directory.GetCurrentDirectory() + @"\Sample.html"));
             this.scraper.Download();
         }
 
+        [DeploymentItem("Sample.html")]
         [TestMethod]
         public void TestLevelCount()
         {
             Assert.AreEqual(this.scraper.Projects.First().Levels.Count, 6);
         }
 
+        [DeploymentItem("Sample.html")]
         [TestMethod]
         public void TestLevel5()
         {
@@ -35,6 +37,7 @@
             Assert.AreEqual(level.Description, "5 unlimited description");
         }
 
+        [DeploymentItem("Sample.html")]
         [TestMethod]
         public void TestLevel1000()
         {
@@ -47,6 +50,7 @@
             Assert.AreEqual(level.Description, "1000 description 1 of 50");
         }
 
+        [DeploymentItem("Sample.html")]
         [TestMethod]
         public void TestLevel6000()
         {

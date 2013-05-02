@@ -1,4 +1,6 @@
-﻿namespace Scraper
+﻿using System.Text;
+
+namespace Scraper
 {
     using System;
     using System.Collections.Generic;
@@ -11,7 +13,7 @@
     using HtmlAgilityPack;
 
     public class Scraper
-    {
+    {      
         public Scraper()
         {
             this.Links = new List<Uri>();
@@ -21,7 +23,7 @@
         public List<Uri> Links { get; set; }
 
         public List<Project> Projects { get; set; }
-
+       
         public void Download()
         {
             foreach (var link in this.Links)
@@ -30,7 +32,7 @@
 
                 Stream htmlStream = new WebClient().OpenRead(link);
 
-                HtmlDocument doc = new HtmlDocument();
+                var doc = new HtmlDocument();
                 doc.Load(htmlStream);
 
                 project.Name = GetName(doc);
@@ -138,35 +140,35 @@
 
         private static int GetTotalProjectBackers(HtmlDocument doc)
         {
-            var backerNode = GetNodesFor(doc, "div", "id", "backers_count"); 
+            var backerNode = GetNodesFor(doc, "div", "id", "backers_count");
 
             return int.Parse(backerNode.First().Attributes["data-backers-count"].Value);
         }
 
         private static string GetCompany(HtmlDocument doc)
         {
-            var companyNode = GetNodesFor(doc, "a", "data-modal-id", "modal_project_by"); 
+            var companyNode = GetNodesFor(doc, "a", "data-modal-id", "modal_project_by");
 
             return companyNode.First().InnerText;
         }
 
         private static string GetProjectDescription(HtmlDocument doc)
         {
-            var descriptionNode = GetNodesFor(doc, "meta", "property", "og:description"); 
+            var descriptionNode = GetNodesFor(doc, "meta", "property", "og:description");
 
             return descriptionNode.First().Attributes["content"].Value;
         }
 
         private static string GetName(HtmlDocument doc)
         {
-            var titleNode = GetNodesFor(doc, "meta", "property", "og:title"); 
+            var titleNode = GetNodesFor(doc, "meta", "property", "og:title");
 
             return titleNode.First().Attributes["content"].Value;
         }
 
         private static IEnumerable<BackingLevel> GetLevels(HtmlDocument doc)
         {
-            var rewardNode = GetNodesFor(doc, "div", "class", "NS-projects-reward"); 
+            var rewardNode = GetNodesFor(doc, "div", "class", "NS-projects-reward");
 
             foreach (var htmlNode in rewardNode)
             {
@@ -190,14 +192,14 @@
 
         private static string GetDescription(HtmlNode htmlNode)
         {
-            var limitBackersNode = GetNodesFor(htmlNode, "div", "class", "desc"); 
+            var limitBackersNode = GetNodesFor(htmlNode, "div", "class", "desc");
 
             return limitBackersNode.First().Descendants().Skip(1).First().InnerText;
         }
 
         private static void SetBackersAllowedValues(HtmlNode htmlNode, BackingLevel level)
         {
-            var limitBackersNode = GetNodesFor(htmlNode, "span", "class", "limited-number").ToList(); 
+            var limitBackersNode = GetNodesFor(htmlNode, "span", "class", "limited-number").ToList();
 
             if (limitBackersNode.Any())
             {
@@ -209,14 +211,14 @@
 
         private static bool GetIsSoldOut(HtmlNode htmlNode)
         {
-            var soldOutNode = GetNodesFor(htmlNode, "span", "class", "sold-out");                
+            var soldOutNode = GetNodesFor(htmlNode, "span", "class", "sold-out");
 
             return soldOutNode.Any();
         }
 
         private static int GetBackers(HtmlNode htmlNode)
         {
-            var numberOfBackersNode = GetNodesFor(htmlNode, "span", "class", "num-backers"); 
+            var numberOfBackersNode = GetNodesFor(htmlNode, "span", "class", "num-backers");
 
             return int.Parse(numberOfBackersNode.First().InnerText.Split(' ')[0]);
         }
@@ -232,55 +234,8 @@
             return int.Parse(numberString);
         }
 
-        [DebuggerDisplay("{Name} - {Levels.Count} - Funding Succeeded: {FundingSucceeded}")]
-        public class Project
-        {
-            public Project()
-            {
-                this.Levels = new List<BackingLevel>();
-            }
+        
 
-            public string Name { get; set; }
-
-            public bool FundingSucceeded { get; set; }
-
-            public Uri Link { get; set; }
-
-            public List<BackingLevel> Levels { get; set; }
-
-            public string Currency { get; set; }
-
-            public string Company { get; set; }
-
-            public int FundingGoal { get; set; }
-
-            public int Backers { get; set; }
-
-            public decimal TotalFunding { get; set; }
-
-            public string Description { get; set; }
-
-            public DateTime StartDate { get; set; }
-
-            public DateTime EndDate { get; set; }
-
-            public string Category { get; set; }
-        }
-
-        [DebuggerDisplay("{Money} - {Backers}")]
-        public class BackingLevel
-        {
-            public int Money { get; set; }
-
-            public int Backers { get; set; }
-
-            public int MaxBackersAllowed { get; set; }
-
-            public int RemainingBackersAllowed { get; set; }
-
-            public bool IsSoldOut { get; set; }
-
-            public string Description { get; set; }
-        }
+        
     }
 }

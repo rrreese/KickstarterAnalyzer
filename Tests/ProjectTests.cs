@@ -16,10 +16,11 @@
         {
             this.scraper = new Scraper.Scraper();
 
-            this.scraper.Links.Add(new Uri(Directory.GetCurrentDirectory() + @"\..\..\Sample.html"));
+            this.scraper.Links.Add(new Uri(Directory.GetCurrentDirectory() + @"\Sample.html"));
             this.scraper.Download();
         }
 
+        [DeploymentItem("Sample.html")]
         [TestMethod]
         public void TestProject()
         {
