@@ -1,4 +1,5 @@
-﻿using Scraper;
+﻿using System.Collections.Generic;
+using Scraper;
 
 namespace Tests
 {
@@ -45,6 +46,29 @@ namespace Tests
             Assert.AreEqual(project.Category, "Video Games");
 
             Assert.AreEqual(this.scraper.Projects.Count, 3);
+        }
+
+
+        [DeploymentItem("Sample.html")]
+        [DeploymentItem("Sample2.html")]
+        [DeploymentItem("Sample3.html")]
+        [TestMethod]
+        public void TestBinning()
+        {
+            TestBins(this.scraper.Projects[0], new[] { 1585, 293790, 0,0,0,49000,36000,30000});
+            TestBins(this.scraper.Projects[1], new[] { 2219,0,513228,0,0,0,130000,30000 });
+            TestBins(this.scraper.Projects[2], new[] { 1585, 0, 422730, 0, 0, 0, 98650, 30000 });
+        }
+
+        private static void TestBins(Project project, IList<int> testValues)
+        {            
+            var bins = project.Binify(Project.StandardBins).ToList();
+
+            for (int index = 0; index < bins.Count; index++)
+            {
+                var bin = bins[index];
+                Assert.AreEqual(bin.Total, testValues[index]);                
+            }
         }
     }
 }

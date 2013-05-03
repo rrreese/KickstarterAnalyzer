@@ -27,13 +27,11 @@ namespace Scraper
 
         public Dictionary<int,decimal> AverageBin()
         {
-            int[] standardBins = { 10, 35, 100, 250, 500, 1000, 5000, 10000 };
-
-            var binTotals = standardBins.ToDictionary<int, int, decimal>(bin => bin, bin => 0);
+            var binTotals = Project.StandardBins.ToDictionary<int, int, decimal>(bin => bin, bin => 0);
 
             foreach (Project project in this.Projects)
             {
-                var bins = project.Binify(standardBins);
+                var bins = project.Binify(Project.StandardBins);
 
                 foreach (var bin in bins)
                 {
@@ -41,7 +39,7 @@ namespace Scraper
                 }
             }
 
-            return binTotals.ToDictionary(binTotal => binTotal.Key, binTotal => binTotal.Value/this.Projects.Count());
+            return binTotals.ToDictionary(binTotal => binTotal.Key, binTotal => binTotal.Value / this.Projects.Count());
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Scraper
     {
         public const string CSVSeperator = ",";
 
-        private readonly IEnumerable<Project> projects; 
+        private readonly IEnumerable<Project> projects;
 
         public CSV(IEnumerable<Project> projects)
         {
@@ -36,7 +36,8 @@ namespace Scraper
                 csv.Append(project.EndDate);
                 csv.Append(CSVSeperator);
 
-                foreach (var bin in project.Binify(new[] { 10, 35, 100, 250, 500, 1000, 5000, 10000 }))
+                
+                foreach (var bin in project.Binify(Project.StandardBins))
                 {
                     csv.Append(bin.Total);
                     csv.Append(CSVSeperator);

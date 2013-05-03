@@ -17,6 +17,8 @@ namespace Scraper
     [DebuggerDisplay("{Name} - {Levels.Count} - Funding Succeeded: {FundingSucceeded}")]
     public class Project
     {
+        public static readonly IEnumerable<int> StandardBins = new[] { 10, 35, 100, 250, 500, 1000, 5000, 10000 };
+
         public Project()
         {
             this.Levels = new List<BackingLevel>();
@@ -67,6 +69,7 @@ namespace Scraper
             }
         }
 
+        [DebuggerDisplay("{Start}-{End} {Total}")]
         public class Bin
         {
             public int Start { get; set; }
