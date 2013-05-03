@@ -56,6 +56,12 @@
     <Compile Include="StatsTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Sample3.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sample2.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Sample.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

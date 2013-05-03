@@ -41,12 +41,7 @@ namespace Scraper
                 }
             }
 
-            foreach (var binTotal in binTotals)
-            {
-                binTotals[binTotal.Key] = binTotal.Value/this.Projects.Count();
-            }
-
-            return binTotals;
+            return binTotals.ToDictionary(binTotal => binTotal.Key, binTotal => binTotal.Value/this.Projects.Count());
         }
     }
 }

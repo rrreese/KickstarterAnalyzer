@@ -47,13 +47,13 @@ namespace Scraper
 
                 project.Backers = GetTotalProjectBackers(doc);
 
-                project.Currency = GetCurrency(doc);
+                project.Currency = (Currency)Enum.Parse(typeof(Currency), GetCurrency(doc));
 
                 project.Link = GetLink(doc);
 
                 project.FundingSucceeded = GetFundingSucceeded(doc);
 
-                project.Levels.AddRange(GetLevels(doc));
+                project.Levels.AddRange(GetLevels(doc, project.Currency));
 
                 project.StartDate = GetStartDate(doc);
 
@@ -166,13 +166,13 @@ namespace Scraper
             return titleNode.First().Attributes["content"].Value;
         }
 
-        private static IEnumerable<BackingLevel> GetLevels(HtmlDocument doc)
+        private static IEnumerable<BackingLevel> GetLevels(HtmlDocument doc, Currency currency)
         {
             var rewardNode = GetNodesFor(doc, "div", "class", "NS-projects-reward");
 
             foreach (var htmlNode in rewardNode)
             {
-                var level = new BackingLevel();
+                var level = new BackingLevel(currency);
 
                 level.Money = GetMoney(htmlNode);
 

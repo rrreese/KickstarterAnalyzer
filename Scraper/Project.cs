@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace Scraper
 {
+    public enum Currency
+    {
+        USD,
+        GBP,
+        EUR
+    }
+
     [DebuggerDisplay("{Name} - {Levels.Count} - Funding Succeeded: {FundingSucceeded}")]
     public class Project
     {
@@ -23,7 +30,7 @@ namespace Scraper
 
         public List<BackingLevel> Levels { get; set; }
 
-        public string Currency { get; set; }
+        public Currency Currency { get; set; }
 
         public string Company { get; set; }
 

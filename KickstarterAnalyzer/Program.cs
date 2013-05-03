@@ -14,7 +14,7 @@
 
             // Find pages
 
-            scraper.Links.Add(new Uri("http://www.kickstarter.com/projects/obsidian/project-eternity"));
+            scraper.Links.Add(new Uri("http://www.kickstarter.com/projects/blackglass/genericgame"));
 
             // Download Pages
             scraper.Download();
