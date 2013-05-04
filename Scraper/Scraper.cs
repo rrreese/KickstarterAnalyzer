@@ -30,38 +30,39 @@ namespace Scraper
             {
                 var project = new Project();
 
-                Stream htmlStream = new WebClient().OpenRead(link);
+                using (Stream htmlStream = new WebClient().OpenRead(link))
+                {
+                    var doc = new HtmlDocument();
+                    doc.Load(htmlStream);
 
-                var doc = new HtmlDocument();
-                doc.Load(htmlStream);
+                    project.Name = GetName(doc);
 
-                project.Name = GetName(doc);
+                    project.Company = GetCompany(doc);
 
-                project.Company = GetCompany(doc);
+                    project.Description = GetProjectDescription(doc);
 
-                project.Description = GetProjectDescription(doc);
+                    project.TotalFunding = GetFunding(doc);
 
-                project.TotalFunding = GetFunding(doc);
+                    project.FundingGoal = GetFundingGoal(doc);
 
-                project.FundingGoal = GetFundingGoal(doc);
+                    project.Backers = GetTotalProjectBackers(doc);
 
-                project.Backers = GetTotalProjectBackers(doc);
+                    project.Currency = (Currency) Enum.Parse(typeof (Currency), GetCurrency(doc));
 
-                project.Currency = (Currency)Enum.Parse(typeof(Currency), GetCurrency(doc));
+                    project.Link = GetLink(doc);
 
-                project.Link = GetLink(doc);
+                    project.FundingSucceeded = GetFundingSucceeded(doc);
 
-                project.FundingSucceeded = GetFundingSucceeded(doc);
+                    project.Levels.AddRange(GetLevels(doc, project.Currency));
 
-                project.Levels.AddRange(GetLevels(doc, project.Currency));
+                    project.StartDate = GetStartDate(doc);
 
-                project.StartDate = GetStartDate(doc);
+                    project.EndDate = GetEndDate(doc);
 
-                project.EndDate = GetEndDate(doc);
+                    project.Category = GetCatgory(doc);
 
-                project.Category = GetCatgory(doc);
-
-                this.Projects.Add(project);
+                    this.Projects.Add(project);
+                }
             }
         }
 

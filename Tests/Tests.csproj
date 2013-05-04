@@ -54,6 +54,7 @@
     <Compile Include="OutputTests.cs" />
     <Compile Include="ProjectTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpiderTests.cs" />
     <Compile Include="StatsTests.cs" />
   </ItemGroup>
   <ItemGroup>
