@@ -20,7 +20,7 @@ namespace Scraper
             this.Projects = new List<Project>();
         }
 
-        public List<Uri> Links { get; set; }
+        public IEnumerable<Uri> Links { get; set; }
 
         public List<Project> Projects { get; set; }
        
@@ -64,6 +64,11 @@ namespace Scraper
                     this.Projects.Add(project);
                 }
             }
+        }
+
+        public void Output(IOutput output, string filename)
+        {
+            output.Save(filename);
         }
 
         private static string GetCatgory(HtmlDocument doc)

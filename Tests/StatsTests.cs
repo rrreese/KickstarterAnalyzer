@@ -19,9 +19,13 @@ namespace Tests
         {
             this.scraper = new Scraper.Scraper();
 
-            this.scraper.Links.Add(new Uri(Directory.GetCurrentDirectory() + @"\Sample.html"));
-            this.scraper.Links.Add(new Uri(Directory.GetCurrentDirectory() + @"\Sample2.html"));
-            this.scraper.Links.Add(new Uri(Directory.GetCurrentDirectory() + @"\Sample3.html"));
+            this.scraper.Links = new Uri[]
+                {
+                    new Uri(Directory.GetCurrentDirectory() + @"\Sample.html"),
+                    new Uri(Directory.GetCurrentDirectory() + @"\Sample2.html"),
+                    new Uri(Directory.GetCurrentDirectory() + @"\Sample3.html")
+                };
+
             this.scraper.Download();
         }
 

@@ -11,12 +11,7 @@ namespace Scraper
     {
         public const string CSVSeperator = ",";
 
-        private readonly IEnumerable<Project> projects;
-
-        public CSV(IEnumerable<Project> projects)
-        {
-            this.projects = projects;
-        }
+        public IEnumerable<Project> Projects { get; set; }
 
         public string Generate()
         {
@@ -41,7 +36,7 @@ namespace Scraper
                 csv.Append(CSVSeperator);
             }
             
-            foreach (Project project in projects)
+            foreach (Project project in Projects)
             {
                 csv.Append(Environment.NewLine);
 

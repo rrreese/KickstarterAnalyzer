@@ -1,27 +1,28 @@
 ﻿namespace KickstarterAnalyzer
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using Scraper;
 
     class Program
     {
         static void Main(string[] args)
         {
-            var scraper = new Scraper.Scraper();
+            var scraper = new Scraper();
 
-            // Find pages
-
-            scraper.Links.Add(new Uri("http://www.kickstarter.com/projects/blackglass/genericgame"));
-
-            // Download Pages
+            var spider = new Spider();
+            scraper.Links = spider.GetLinks("/discover/categories/video%20games/most-funded");
             scraper.Download();
 
-            // Scrape Pages
+            Console.WriteLine("Downloaded and scraped:");
+            foreach (var project in scraper.Projects)
+            {
+                Console.WriteLine(project.Name);    
+            }
 
-            // Analyse
+            Console.WriteLine("Please Enter Output file name:");
+            var filename = Console.ReadLine();
+
+            scraper.Output(new CSV(), filename);
         }
     }
 }

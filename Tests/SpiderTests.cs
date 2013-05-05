@@ -11,11 +11,12 @@ namespace Tests
     [TestClass]
     public class SpiderTests
     {
+        [Ignore]
         [TestMethod]
         public void SpiderTest()
         {
             var spider = new Spider();
-            var links = spider.GetLinks();
+            var links = spider.GetLinks("/discover/categories/video%20games/most-funded");
 
             
         }

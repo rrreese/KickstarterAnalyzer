@@ -13,19 +13,19 @@ namespace Scraper
     {
         private const string root = "http://www.kickstarter.com";
 
-        public IEnumerable<Uri> GetLinks()
+        public IEnumerable<Uri> GetLinks(string baseUri)
         {
             var links = new List<Uri>();
 
-            GetLinksOnPage(links, new Uri("http://www.kickstarter.com/discover/categories/video%20games/most-funded"));
+            GetLinksOnPage(links, new Uri(root + baseUri));
 
             for (int i = 1; i < 50; i++)
             {
-                GetLinksOnPage(links, new Uri("http://www.kickstarter.com/discover/categories/video%20games/most-funded?page=" + i));
+                if (!GetLinksOnPage(links, new Uri(root + baseUri + "?page=" + i)))
+                    break;
             }
 
-            
-            throw new NotImplementedException();
+            return links;
         }
 
         private static bool GetLinksOnPage(List<Uri> links, Uri page)

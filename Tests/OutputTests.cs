@@ -18,11 +18,16 @@ namespace Tests
         [TestInitialize]
         public void Setup()
         {
-            this.scraper = new Scraper.Scraper();
+            this.scraper = new Scraper.Scraper
+                {
+                    Links = new Uri[]
+                        {
+                            new Uri(Directory.GetCurrentDirectory() + @"\Sample.html"),
+                            new Uri(Directory.GetCurrentDirectory() + @"\Sample2.html"),
+                            new Uri(Directory.GetCurrentDirectory() + @"\Sample3.html")
+                        }
+                };
 
-            this.scraper.Links.Add(new Uri(Directory.GetCurrentDirectory() + @"\Sample.html"));
-            this.scraper.Links.Add(new Uri(Directory.GetCurrentDirectory() + @"\Sample2.html"));
-            this.scraper.Links.Add(new Uri(Directory.GetCurrentDirectory() + @"\Sample3.html"));
             this.scraper.Download();
         }
 
@@ -32,7 +37,7 @@ namespace Tests
         [TestMethod]
         public void CSVTest()
         {
-            var csvOutput = new CSV(scraper.Projects);
+            var csvOutput = new CSV() { Projects = scraper.Projects };
             var csv = csvOutput.Generate();
 
             Assert.AreEqual(csv.CountString(Environment.NewLine), 3);

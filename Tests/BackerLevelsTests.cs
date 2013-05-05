@@ -15,7 +15,7 @@
         {
             this.scraper = new Scraper.Scraper();
 
-            this.scraper.Links.Add(new Uri(Directory.GetCurrentDirectory() + @"\Sample.html"));
+            this.scraper.Links = new Uri[]{new Uri(Directory.GetCurrentDirectory() + @"\Sample.html")};
             this.scraper.Download();
         }
 
