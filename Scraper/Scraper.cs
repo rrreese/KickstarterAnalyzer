@@ -1,16 +1,12 @@
-﻿using System.Text;
-
-namespace Scraper
+﻿namespace Scraper
 {
+    using HtmlAgilityPack;
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.IO;
     using System.Linq;
     using System.Net;
     using System.Text.RegularExpressions;
-
-    using HtmlAgilityPack;
 
     public class Scraper
     {      
