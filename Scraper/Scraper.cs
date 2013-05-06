@@ -24,6 +24,8 @@
         {
             foreach (var link in this.Links)
             {
+                Console.WriteLine(link.AbsolutePath);
+
                 var project = new Project();
 
                 using (Stream htmlStream = new WebClient().OpenRead(link))
@@ -64,6 +66,7 @@
 
         public void Output(IOutput output, string filename)
         {
+            output.Projects = this.Projects;
             output.Save(filename);
         }
 
@@ -91,14 +94,14 @@
         {
             var startNode = GetNodesFor(doc, "li", "class", "posted");
 
-            return DateTime.Parse(startNode.First().ChildNodes.ToList()[2].InnerHtml.Replace("\n", string.Empty));
+            return DateTime.Parse(startNode.First().ChildNodes.ToList()[4].InnerHtml.Replace("\n", string.Empty));
         }
 
         private static DateTime GetEndDate(HtmlDocument doc)
         {
             var startNode = GetNodesFor(doc, "li", "class", "ends");
 
-            return DateTime.Parse(startNode.First().ChildNodes.ToList()[2].InnerHtml.Replace("\n", string.Empty));
+            return DateTime.Parse(startNode.First().ChildNodes.ToList()[4].InnerHtml.Replace("\n", string.Empty));
         }
 
         private static bool GetFundingSucceeded(HtmlDocument doc)
@@ -127,7 +130,7 @@
         private static string GetCurrency(HtmlDocument doc)
         {
             var fundingNode = doc.DocumentNode
-                                 .Descendants("span")
+                                 .Descendants("data")
                                  .Where(d => d.Attributes.Contains("data-currency"));
 
             return fundingNode.First().Attributes["data-currency"].Value;
@@ -149,7 +152,7 @@
 
         private static string GetCompany(HtmlDocument doc)
         {
-            var companyNode = GetNodesFor(doc, "a", "data-modal-id", "modal_project_by");
+            var companyNode = GetNodesFor(doc, "a", "data-modal-class", "modal_project_by");
 
             return companyNode.First().InnerText;
         }
@@ -227,11 +230,11 @@
 
         private static int GetMoney(HtmlNode htmlNode)
         {
-            var h3Node = htmlNode.Descendants("h3");
+            var h5Node = htmlNode.Descendants("h5");
 
             // Format: Pledge $5,000 or more
             string numberString =
-                new Regex(@"[0-9]+(,[0-9]+)*").Match(h3Node.First().InnerText).Groups[0].ToString().Replace(",", string.Empty);
+                new Regex(@"[0-9]+(,[0-9]+)*").Match(h5Node.First().InnerText).Groups[0].ToString().Replace(",", string.Empty);
 
             return int.Parse(numberString);
         }

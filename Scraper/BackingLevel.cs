@@ -14,9 +14,13 @@ namespace Scraper
         }
 
         public int Money { get; set; }
-        public decimal MoneyUSD {get { if (this.currency == Currency.USD) return Money;
-        else throw new NotImplementedException();
-        }}
+        public decimal MoneyUSD
+        {
+            get
+            {
+                if (this.currency == Currency.USD) return Money;
+                else return Money; //todo: fix this
+            }}
         public int Backers { get; set; }
         public int MaxBackersAllowed { get; set; }
         public int RemainingBackersAllowed { get; set; }

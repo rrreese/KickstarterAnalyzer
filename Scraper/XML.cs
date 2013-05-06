@@ -1,4 +1,8 @@
-﻿namespace Scraper
+﻿using System;
+using System.IO;
+using System.Xml;
+
+namespace Scraper
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -53,7 +57,14 @@
 
         public void Save(string filename)
         {
-            throw new System.NotImplementedException();
+            var xdoc = GenerateXDoc(this.Projects);
+
+
+
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.CheckCharacters = false;
+            XmlWriter writer = XmlWriter.Create(Path.Combine(filename), settings);
+            xdoc.Save(writer);
         }
     }
 }

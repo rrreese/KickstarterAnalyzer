@@ -1,4 +1,6 @@
-﻿namespace KickstarterAnalyzer
+﻿using System.Linq;
+
+namespace KickstarterAnalyzer
 {
     using System;
     using Scraper;
@@ -11,6 +13,9 @@
 
             var spider = new Spider();
             scraper.Links = spider.GetLinks("/discover/categories/video%20games/most-funded");
+
+            scraper.Links = scraper.Links.Take(10); //Todo: add top x option
+            
             scraper.Download();
 
             Console.WriteLine("Downloaded and scraped:");
@@ -22,7 +27,7 @@
             Console.WriteLine("Please Enter Output file name:");
             var filename = Console.ReadLine();
 
-            scraper.Output(new CSV(), filename);
+            scraper.Output(new XML(), filename);
         }
     }
 }
