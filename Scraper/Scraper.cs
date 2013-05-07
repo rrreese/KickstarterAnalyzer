@@ -64,10 +64,18 @@
             }
         }
 
-        public void Output(IOutput output, string filename)
+        public void Save(IOutput output, string filename)
         {
             output.Projects = this.Projects;
             output.Save(filename);
+        }
+
+
+        public void Load(string testXML)
+        {
+            var xml = new XML();
+            xml.Load(testXML);
+            this.Projects = xml.Projects.ToList();
         }
 
         private static string GetCatgory(HtmlDocument doc)
@@ -238,9 +246,5 @@
 
             return int.Parse(numberString);
         }
-
-        
-
-        
     }
 }

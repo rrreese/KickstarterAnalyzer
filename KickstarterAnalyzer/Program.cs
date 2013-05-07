@@ -27,7 +27,7 @@ namespace KickstarterAnalyzer
             Console.WriteLine("Please Enter Output file name:");
             var filename = Console.ReadLine();
 
-            scraper.Output(new XML(), filename);
+            scraper.Save(new XML(), filename);
         }
     }
 }

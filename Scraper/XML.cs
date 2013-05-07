@@ -63,8 +63,22 @@ namespace Scraper
 
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.CheckCharacters = false;
-            XmlWriter writer = XmlWriter.Create(Path.Combine(filename), settings);
-            xdoc.Save(writer);
+            using (XmlWriter writer = XmlWriter.Create(Path.Combine(filename), settings))
+            {
+                xdoc.Save(writer);
+            }
+
+        }
+
+        public void Load(string testXML)
+        {
+            var xdoc = XDocument.Load(testXML);
+
+            this.Projects = xdoc.Descendants("project")
+                                .Select(projectElement => new Project
+                {
+                    TotalFunding = decimal.Parse(projectElement.Elements("totalFunding").First().Value)
+                });
         }
     }
 }

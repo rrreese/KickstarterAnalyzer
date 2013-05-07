@@ -1,4 +1,6 @@
-﻿namespace Tests
+﻿using System.Threading;
+
+namespace Tests
 {
     using System;
     using System.IO;
@@ -50,6 +52,21 @@
 
             Assert.IsTrue(xml.Length > 8000);
             Assert.IsTrue(xml.RemoveAllWhiteSpace().StartsWith("<projects><project><name>"));
+        }
+
+        [DeploymentItem("Sample.html")]
+        [DeploymentItem("Sample2.html")]
+        [DeploymentItem("Sample3.html")]
+        [TestMethod]
+        public void XMLSaveLoadTest()
+        {
+            scraper.Save(new XML(), "test.xml");
+
+            Thread.Sleep(5000);
+
+            scraper.Load("test.xml");
+
+            
         }
     }
 }
