@@ -12,7 +12,7 @@ namespace KickstarterAnalyzer
             var scraper = new Scraper();
 
             var spider = new Spider();
-            scraper.Links = spider.GetLinks("/discover/categories/video%20games/most-funded");
+            scraper.Links = spider.GetLinks("/discover/advanced?category_id=12&sort=most_funded");
 
             scraper.Links = scraper.Links.Take(10); //Todo: add top x option
             
