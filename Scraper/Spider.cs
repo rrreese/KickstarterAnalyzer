@@ -36,11 +36,9 @@ namespace Scraper
                 var doc = new HtmlDocument();
                 doc.Load(htmlStream);
 
-                var hBlock =
-                    doc.DocumentNode.Descendants("h2")
-                       .Where(d => d.Attributes.Contains("class") && d.Attributes["class"].Value.Contains("bbcard_name"));
+                var hBlock = doc.DocumentNode.SelectNodes("//h6[@class='project-title mobile-center']");
 
-                var collection = hBlock.Select(htmlNode => htmlNode.ChildNodes[1].ChildNodes[1].Attributes["href"].Value).Select(linkFragment => new Uri(root + linkFragment));
+                var collection = hBlock.Select(htmlNode => htmlNode.ChildNodes[1].Attributes["href"].Value).Select(linkFragment => new Uri(root + linkFragment));
 
                 if (!collection.Any()) 
                     return false;
