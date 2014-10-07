@@ -53,7 +53,7 @@
 
                     project.Levels.AddRange(GetLevels(doc, project.Currency));
 
-                    project.StartDate = GetStartDate(doc);
+                   // project.StartDate = GetStartDate(doc);
 
                     project.EndDate = GetEndDate(doc);
 
@@ -107,9 +107,10 @@
 
         private static DateTime GetEndDate(HtmlDocument doc)
         {
-            var startNode = GetNodesFor(doc, "li", "class", "ends");
-
-            return DateTime.Parse(startNode.First().ChildNodes.ToList()[4].InnerHtml.Replace("\n", string.Empty));
+            var startNode = GetNodesFor(doc, "span", "id", "project_duration_data");
+            var x = startNode.First().Attributes.First(a => a.Name == "data-end_time");
+           
+            return DateTime.Parse(x.Value);
         }
 
         private static bool GetFundingSucceeded(HtmlDocument doc)
