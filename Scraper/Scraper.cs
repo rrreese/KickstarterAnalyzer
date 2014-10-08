@@ -22,9 +22,9 @@
        
         public void Download()
         {
-            foreach (var link in this.Links)
+            foreach (var link in this.Links.Select(uri => "http://" + uri.Authority + uri.AbsolutePath).Distinct())
             {
-                Console.WriteLine(link.AbsolutePath);
+                Console.WriteLine(link);
 
                 var project = new Project();
 
@@ -45,7 +45,16 @@
 
                     project.Backers = GetTotalProjectBackers(doc);
 
-                    project.Currency = (Currency) Enum.Parse(typeof (Currency), GetCurrency(doc));
+                    Currency currency;
+                    if (Currency.TryParse(GetCurrency(doc), out currency))
+                    {
+                        project.Currency = currency;
+                    }
+                    else
+                    {
+                        Console.WriteLine("CURRENCY NOT FOUND" + GetCurrency(doc));
+                        continue;
+                    }
 
                     project.Link = GetLink(doc);
 

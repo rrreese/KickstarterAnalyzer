@@ -12,7 +12,9 @@ namespace Scraper
         USD,
         GBP,
         EUR,
-        CAD
+        CAD,
+        NZD,
+        AUD
     }
 
     [DebuggerDisplay("{Name} - {Levels.Count} - Funding Succeeded: {FundingSucceeded}")]

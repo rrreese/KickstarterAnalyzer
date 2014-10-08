@@ -11,17 +11,17 @@ namespace Scraper
 {
     public class Spider
     {
-        private const string root = "http://www.kickstarter.com";
+        private const string root = "http://www.kickstarter.com/";
 
         public IEnumerable<Uri> GetLinks(string baseUri)
         {
             var links = new List<Uri>();
 
-            GetLinksOnPage(links, new Uri(root + baseUri));
+            GetLinksOnPage(links, new Uri(root + baseUri + "&page=1"));
 
-            for (int i = 1; i < 50; i++)
+            for (int i = 2; i < 50; i++)
             {
-                if (!GetLinksOnPage(links, new Uri(root + baseUri + "?page=" + i)))
+                if (!GetLinksOnPage(links, new Uri(root + baseUri + "&page=" + i)))
                     break;
             }
 

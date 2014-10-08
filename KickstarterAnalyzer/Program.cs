@@ -12,9 +12,10 @@ namespace KickstarterAnalyzer
             var scraper = new Scraper();
 
             var spider = new Spider();
-            scraper.Links = spider.GetLinks("/discover/advanced?category_id=12&sort=most_funded");
 
-            scraper.Links = scraper.Links.Take(10); //Todo: add top x option
+            scraper.Links = spider.GetLinks("discover/advanced?category_id=12&woe_id=0&sort=most_funded");
+
+            scraper.Links = scraper.Links;//.Take(10); //Todo: add top x option
             
             scraper.Download();
 
@@ -27,7 +28,8 @@ namespace KickstarterAnalyzer
             Console.WriteLine("Please Enter Output file name:");
             var filename = Console.ReadLine();
 
-            scraper.Save(new XML(), filename);
+            scraper.Save(new XML(), filename + ".xml");
+            scraper.Save(new CSV(), filename + ".csv");
         }
     }
 }

@@ -38,7 +38,7 @@
             {
                 csv.Append(Environment.NewLine);
 
-                csv.Append(project.Name);
+                csv.Append(project.Name.Replace(",",""));
                 csv.Append(CSVSeperator);
                 csv.Append(project.TotalFunding);
                 csv.Append(CSVSeperator);
